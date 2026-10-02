@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Lot Grabber</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main id="app" aria-live="polite">
+    <section id="state-empty" class="state" hidden>
+      <p class="state-title">No lot on this tab</p>
+      <p class="state-body">Open a Copart lot page (copart.com/lot/…) and click Lot Grabber again.</p>
+    </section>
+
+    <section id="state-loading" class="state" hidden>
+      <p class="state-title">Reading lot…</p>
+    </section>
+
+    <section id="state-error" class="state" hidden>
+      <p class="state-title">Couldn't read this lot</p>
+      <p class="state-body" id="error-msg"></p>
+      <button class="btn btn-secondary" id="retry">Try again</button>
+    </section>
+
+    <section id="state-lot" hidden>
+      <header class="lot-head">
+        <div class="head-top">
+          <h1 id="v-name"></h1>
+          <button class="icon-btn" id="open-settings" title="Settings" aria-label="Settings">
+            <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M11.3 1.5l.4 2.1c.5.2 1 .5 1.4.8l2-.8 1.3 2.3-1.6 1.4c.1.5.1 1.1 0 1.6l1.6 1.4-1.3 2.3-2-.8c-.4.3-.9.6-1.4.8l-.4 2.1H8.7l-.4-2.1c-.5-.2-1-.5-1.4-.8l-2 .8-1.3-2.3 1.6-1.4a4.6 4.6 0 010-1.6L3.6 5.9l1.3-2.3 2 .8c.4-.3.9-.6 1.4-.8l.4-2.1h2.6zM10 7.2a2.8 2.8 0 100 5.6 2.8 2.8 0 000-5.6z" transform="translate(0 1.5)"/></svg>
+          </button>
+        </div>
+        <p class="lot-line" id="v-lotline"></p>
+        <div class="chips" id="v-chips"></div>
+      </header>
+
+      <div class="spread" id="v-spread" hidden>
+        <div class="spread-bar" role="img" id="v-spread-bar">
+          <span class="seg seg-bid" id="seg-bid"></span>
+          <span class="seg seg-repair" id="seg-repair"></span>
+        </div>
+        <p class="spread-caption" id="v-spread-caption"></p>
+      </div>
+
+      <section class="bids" id="v-bids" aria-label="Max bid">
+        <div class="bid-cols">
+          <div class="bid-col">
+            <span class="bid-label">Flip max</span>
+            <span class="bid-value" id="bid-flip">–</span>
+            <span class="bid-conf" id="conf-flip"></span>
+          </div>
+          <div class="bid-col">
+            <span class="bid-label">Keep max</span>
+            <span class="bid-value" id="bid-keep">–</span>
+            <span class="bid-conf" id="conf-keep"></span>
+          </div>
+        </div>
+        <p class="bid-note" id="bid-vs-current"></p>
+        <p class="bid-basis" id="bid-basis"></p>
+        <button class="btn btn-secondary btn-block" id="btn-analyze">Analyze photos with Claude</button>
+      </section>
+
+      <section class="analysis" id="v-analysis" hidden aria-label="Photo analysis">
+        <p class="analysis-summary" id="an-summary"></p>
+        <p class="analysis-line" id="an-line"></p>
+        <ul class="flags" id="an-flags"></ul>
+      </section>
+
+      <dl class="facts" id="v-facts"></dl>
+
+      <div class="thumbs" id="v-thumbs" aria-label="Lot photos"></div>
+
+      <footer class="actions">
+        <div class="quality" role="radiogroup" aria-label="Photo size">
+          <label><input type="radio" name="quality" value="hrs" checked><span>High-res</span></label>
+          <label><input type="radio" name="quality" value="ful"><span>Standard</span></label>
+        </div>
+        <button class="btn btn-primary" id="btn-download">Save photos and summary</button>
+        <div class="row">
+          <button class="btn btn-secondary" id="btn-copy">Copy summary</button>
+          <button class="btn btn-secondary" id="btn-json">Copy JSON</button>
+        </div>
+        <p class="status" id="status"></p>
+      </footer>
+    </section>
+  </main>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

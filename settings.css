@@ -1,0 +1,15 @@
+body.settings { width: auto; max-width: 640px; margin: 0 auto; padding: 24px 20px 48px; font-size: 14px; }
+.settings h1 { font-size: 20px; margin: 0 0 16px; }
+.settings h2 { font-size: 15px; margin: 0 0 4px; }
+.settings section { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 16px; margin-bottom: 14px; }
+.settings .hint { margin: 0 0 12px; color: var(--muted); }
+.settings code { font-size: 12.5px; }
+.folder-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.folder-name { font-weight: 600; }
+.btn-row { display: flex; gap: 8px; }
+.field { display: grid; gap: 4px; margin-bottom: 10px; }
+.field span { color: var(--muted); font-size: 13px; }
+.field input { font: inherit; padding: 7px 9px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink); }
+.field input:focus-visible { outline: 2px solid var(--primary); outline-offset: 1px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 14px; margin-bottom: 8px; align-items: end; }
+.grid .field input { font-variant-numeric: tabular-nums; }

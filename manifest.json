@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "Lot Grabber",
+  "version": "0.2.1",
+  "description": "Pull Copart lot details and photos into one folder, price the lot, and get a photo-based damage read from Claude.",
+  "minimum_chrome_version": "116",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage",
+    "offscreen"
+  ],
+  "host_permissions": [
+    "https://www.copart.com/*",
+    "https://cs.copart.com/*",
+    "https://api.anthropic.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Grab this lot",
+    "default_icon": {
+      "16": "icons/16.png",
+      "32": "icons/32.png",
+      "48": "icons/48.png"
+    }
+  },
+  "icons": {
+    "16": "icons/16.png",
+    "32": "icons/32.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+Shift+L"
+      },
+      "description": "Open Lot Grabber"
+    }
+  },
+  "options_page": "settings.html"
+}

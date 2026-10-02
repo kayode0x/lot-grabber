@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Lot Grabber settings</title>
+  <link rel="stylesheet" href="popup.css">
+  <link rel="stylesheet" href="settings.css">
+</head>
+<body class="settings">
+  <main>
+    <h1>Lot Grabber settings</h1>
+
+    <section id="folder">
+      <h2>Save folder</h2>
+      <p class="hint">Each lot gets its own subfolder here, with the summary, photos, and JSON side by side. Chrome won't let extensions write to the Downloads root itself, so create or pick a folder inside it, like <code>Downloads/lots</code>.</p>
+      <div class="folder-row">
+        <span id="folder-name" class="folder-name">Not set</span>
+        <span id="folder-state" class="chip"></span>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" id="pick">Choose folder</button>
+        <button class="btn btn-secondary" id="grant" hidden>Allow access</button>
+      </div>
+      <p class="status" id="folder-status"></p>
+    </section>
+
+    <section>
+      <h2>Photo analysis</h2>
+      <p class="hint">Photos and lot data go straight from this browser to api.anthropic.com. The key is stored in this extension's local storage, which anyone with access to this Chrome profile can read.</p>
+      <label class="field"><span>Claude API key</span><input id="apiKey" type="password" autocomplete="off" spellcheck="false" placeholder="sk-ant-…"></label>
+      <label class="field"><span>Model</span><input id="model" list="models" spellcheck="false"></label>
+      <datalist id="models">
+        <option value="claude-sonnet-5-5"></option>
+        <option value="claude-opus-5-5"></option>
+        <option value="claude-fable-5-1"></option>
+        <option value="claude-haiku-4-5-20251001"></option>
+      </datalist>
+    </section>
+
+    <section>
+      <h2>Bid math</h2>
+      <p class="hint">Max bid = exit − repair × contingency − fees − tax − transport − title − holding − profit. Profit is the larger of the minimum and the percentage of all-in.</p>
+      <div class="grid" id="assumptions"></div>
+      <button class="btn btn-secondary" id="reset">Reset bid math to defaults</button>
+    </section>
+
+    <p class="status" id="save-status"></p>
+  </main>
+  <script type="module" src="settings.js"></script>
+</body>
+</html>
